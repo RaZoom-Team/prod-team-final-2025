@@ -1,0 +1,778 @@
+
+Running with gitlab-runner 16.1.0 (b72e108d)
+  on gitlab-runner-5f45fb4598-vww48 t1_xyTs2, system ID: r_AGRNBQqFG2JN
+Preparing the "kubernetes" executor 00:00
+Using Kubernetes namespace: default
+Using Kubernetes executor with image ubuntu:22.04 ...
+Using attach strategy to execute scripts...
+Preparing environment 00:04
+Waiting for pod default/runner-t1xyts2-project-334-concurrent-0dfbdj to be running, status is Pending
+Running on runner-t1xyts2-project-334-concurrent-0dfbdj via gitlab-runner-5f45fb4598-vww48...
+Getting source from Git repository 00:01
+Fetching changes with git depth set to 20...
+Initialized empty Git repository in /builds/team-39/razoom-team/.git/
+Created fresh repository.
+Checking out 8d1bb9e9 as detached HEAD (ref is master)...
+Skipping Git submodules setup
+Executing "step_script" stage of the job script 03:15
+$ apt-get update && apt-get install -y openssh-client && apt-get install -y rsync
+Get:1 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+Get:2 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
+Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+Get:4 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [45.2 kB]
+Get:5 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [2649 kB]
+Get:6 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
+Get:7 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [17.5 MB]
+Get:8 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [3688 kB]
+Get:9 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [1235 kB]
+Get:10 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 Packages [266 kB]
+Get:11 http://archive.ubuntu.com/ubuntu jammy/restricted amd64 Packages [164 kB]
+Get:12 http://archive.ubuntu.com/ubuntu jammy/main amd64 Packages [1792 kB]
+Get:13 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [2956 kB]
+Get:14 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [3830 kB]
+Get:15 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1533 kB]
+Get:16 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [53.3 kB]
+Get:17 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [35.2 kB]
+Get:18 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [81.4 kB]
+Fetched 36.5 MB in 2s (17.9 MB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libbsd0 libcbor0.8 libedit2 libfido2-1 libmd0 libx11-6 libx11-data libxau6
+  libxcb1 libxdmcp6 libxext6 libxmuu1 xauth
+Suggested packages:
+  keychain libpam-ssh monkeysphere ssh-askpass
+The following NEW packages will be installed:
+  libbsd0 libcbor0.8 libedit2 libfido2-1 libmd0 libx11-6 libx11-data libxau6
+  libxcb1 libxdmcp6 libxext6 libxmuu1 openssh-client xauth
+0 upgraded, 14 newly installed, 0 to remove and 11 not upgraded.
+Need to get 2098 kB of archives.
+After this operation, 7380 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu jammy/main amd64 libmd0 amd64 1.0.4-1build1 [23.0 kB]
+Get:2 http://archive.ubuntu.com/ubuntu jammy/main amd64 libbsd0 amd64 0.11.5-1 [44.8 kB]
+Get:3 http://archive.ubuntu.com/ubuntu jammy/main amd64 libcbor0.8 amd64 0.8.0-2ubuntu1 [24.6 kB]
+Get:4 http://archive.ubuntu.com/ubuntu jammy/main amd64 libedit2 amd64 3.1-20210910-1build1 [96.8 kB]
+Get:5 http://archive.ubuntu.com/ubuntu jammy/main amd64 libfido2-1 amd64 1.10.0-1 [82.8 kB]
+Get:6 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxau6 amd64 1:1.0.9-1build5 [7634 B]
+Get:7 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxdmcp6 amd64 1:1.1.3-0ubuntu5 [10.9 kB]
+Get:8 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxcb1 amd64 1.14-3ubuntu3 [49.0 kB]
+Get:9 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libx11-data all 2:1.7.5-1ubuntu0.3 [120 kB]
+Get:10 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libx11-6 amd64 2:1.7.5-1ubuntu0.3 [667 kB]
+Get:11 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxext6 amd64 2:1.3.4-1build1 [31.8 kB]
+Get:12 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxmuu1 amd64 2:1.1.3-3 [10.2 kB]
+Get:13 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 openssh-client amd64 1:8.9p1-3ubuntu0.11 [903 kB]
+Get:14 http://archive.ubuntu.com/ubuntu jammy/main amd64 xauth amd64 1:1.1-1build2 [27.5 kB]
+debconf: delaying package configuration, since apt-utils is not installed
+Fetched 2098 kB in 1s (4161 kB/s)
+Selecting previously unselected package libmd0:amd64.
+(Reading database ... 4393 files and directories currently installed.)
+Preparing to unpack .../00-libmd0_1.0.4-1build1_amd64.deb ...
+Unpacking libmd0:amd64 (1.0.4-1build1) ...
+Selecting previously unselected package libbsd0:amd64.
+Preparing to unpack .../01-libbsd0_0.11.5-1_amd64.deb ...
+Unpacking libbsd0:amd64 (0.11.5-1) ...
+Selecting previously unselected package libcbor0.8:amd64.
+Preparing to unpack .../02-libcbor0.8_0.8.0-2ubuntu1_amd64.deb ...
+Unpacking libcbor0.8:amd64 (0.8.0-2ubuntu1) ...
+Selecting previously unselected package libedit2:amd64.
+Preparing to unpack .../03-libedit2_3.1-20210910-1build1_amd64.deb ...
+Unpacking libedit2:amd64 (3.1-20210910-1build1) ...
+Selecting previously unselected package libfido2-1:amd64.
+Preparing to unpack .../04-libfido2-1_1.10.0-1_amd64.deb ...
+Unpacking libfido2-1:amd64 (1.10.0-1) ...
+Selecting previously unselected package libxau6:amd64.
+Preparing to unpack .../05-libxau6_1%3a1.0.9-1build5_amd64.deb ...
+Unpacking libxau6:amd64 (1:1.0.9-1build5) ...
+Selecting previously unselected package libxdmcp6:amd64.
+Preparing to unpack .../06-libxdmcp6_1%3a1.1.3-0ubuntu5_amd64.deb ...
+Unpacking libxdmcp6:amd64 (1:1.1.3-0ubuntu5) ...
+Selecting previously unselected package libxcb1:amd64.
+Preparing to unpack .../07-libxcb1_1.14-3ubuntu3_amd64.deb ...
+Unpacking libxcb1:amd64 (1.14-3ubuntu3) ...
+Selecting previously unselected package libx11-data.
+Preparing to unpack .../08-libx11-data_2%3a1.7.5-1ubuntu0.3_all.deb ...
+Unpacking libx11-data (2:1.7.5-1ubuntu0.3) ...
+Selecting previously unselected package libx11-6:amd64.
+Preparing to unpack .../09-libx11-6_2%3a1.7.5-1ubuntu0.3_amd64.deb ...
+Unpacking libx11-6:amd64 (2:1.7.5-1ubuntu0.3) ...
+Selecting previously unselected package libxext6:amd64.
+Preparing to unpack .../10-libxext6_2%3a1.3.4-1build1_amd64.deb ...
+Unpacking libxext6:amd64 (2:1.3.4-1build1) ...
+Selecting previously unselected package libxmuu1:amd64.
+Preparing to unpack .../11-libxmuu1_2%3a1.1.3-3_amd64.deb ...
+Unpacking libxmuu1:amd64 (2:1.1.3-3) ...
+Selecting previously unselected package openssh-client.
+Preparing to unpack .../12-openssh-client_1%3a8.9p1-3ubuntu0.11_amd64.deb ...
+Unpacking openssh-client (1:8.9p1-3ubuntu0.11) ...
+Selecting previously unselected package xauth.
+Preparing to unpack .../13-xauth_1%3a1.1-1build2_amd64.deb ...
+Unpacking xauth (1:1.1-1build2) ...
+Setting up libxau6:amd64 (1:1.0.9-1build5) ...
+Setting up libcbor0.8:amd64 (0.8.0-2ubuntu1) ...
+Setting up libx11-data (2:1.7.5-1ubuntu0.3) ...
+Setting up libmd0:amd64 (1.0.4-1build1) ...
+Setting up libfido2-1:amd64 (1.10.0-1) ...
+Setting up libbsd0:amd64 (0.11.5-1) ...
+Setting up libxdmcp6:amd64 (1:1.1.3-0ubuntu5) ...
+Setting up libxcb1:amd64 (1.14-3ubuntu3) ...
+Setting up libedit2:amd64 (3.1-20210910-1build1) ...
+Setting up libx11-6:amd64 (2:1.7.5-1ubuntu0.3) ...
+Setting up libxmuu1:amd64 (2:1.1.3-3) ...
+Setting up openssh-client (1:8.9p1-3ubuntu0.11) ...
+update-alternatives: using /usr/bin/ssh to provide /usr/bin/rsh (rsh) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/rsh.1.gz because associated file /usr/share/man/man1/ssh.1.gz (of link group rsh) doesn't exist
+update-alternatives: using /usr/bin/slogin to provide /usr/bin/rlogin (rlogin) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/rlogin.1.gz because associated file /usr/share/man/man1/slogin.1.gz (of link group rlogin) doesn't exist
+update-alternatives: using /usr/bin/scp to provide /usr/bin/rcp (rcp) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/rcp.1.gz because associated file /usr/share/man/man1/scp.1.gz (of link group rcp) doesn't exist
+Setting up libxext6:amd64 (2:1.3.4-1build1) ...
+Setting up xauth (1:1.1-1build2) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.8) ...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libpopt0
+Suggested packages:
+  openssh-server python3 python3-braceexpand
+The following NEW packages will be installed:
+  libpopt0 rsync
+0 upgraded, 2 newly installed, 0 to remove and 11 not upgraded.
+Need to get 465 kB of archives.
+After this operation, 937 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu jammy/main amd64 libpopt0 amd64 1.18-3build1 [28.2 kB]
+Get:2 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 rsync amd64 3.2.7-0ubuntu0.22.04.4 [437 kB]
+debconf: delaying package configuration, since apt-utils is not installed
+Fetched 465 kB in 0s (1163 kB/s)
+Selecting previously unselected package libpopt0:amd64.
+(Reading database ... 4769 files and directories currently installed.)
+Preparing to unpack .../libpopt0_1.18-3build1_amd64.deb ...
+Unpacking libpopt0:amd64 (1.18-3build1) ...
+Selecting previously unselected package rsync.
+Preparing to unpack .../rsync_3.2.7-0ubuntu0.22.04.4_amd64.deb ...
+Unpacking rsync (3.2.7-0ubuntu0.22.04.4) ...
+Setting up libpopt0:amd64 (1.18-3build1) ...
+Setting up rsync (3.2.7-0ubuntu0.22.04.4) ...
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Processing triggers for libc-bin (2.35-0ubuntu3.8) ...
+$ mkdir -p ~/.ssh
+$ echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+$ chmod 600 ~/.ssh/id_rsa
+$ eval $(ssh-agent -s)
+Agent pid 449
+$ ssh-add ~/.ssh/id_rsa
+Identity added: /root/.ssh/id_rsa (deploy@prod-team-39)
+$ ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
+# prod-team-39-c4d6ne1t.final.prodcontest.ru:22 SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.8
+# prod-team-39-c4d6ne1t.final.prodcontest.ru:22 SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.8
+# prod-team-39-c4d6ne1t.final.prodcontest.ru:22 SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.8
+# prod-team-39-c4d6ne1t.final.prodcontest.ru:22 SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.8
+# prod-team-39-c4d6ne1t.final.prodcontest.ru:22 SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.8
+$ ssh $SERVER_USER@$SERVER_HOST whoami
+[MASKED]
+$ rsync -avz --delete --exclude='.env' ./ $SERVER_USER@$SERVER_HOST:$SERVER_DIR
+sending incremental file list
+./
+.env.example
+.gitignore
+.gitlab-ci.yml
+README.md
+docker-compose.yml
+nginx.conf
+deleting .git/objects/pack/pack-eba1880f09d3fd550127fa417bd9cf1b27d5fedd.rev
+deleting .git/objects/pack/pack-eba1880f09d3fd550127fa417bd9cf1b27d5fedd.pack
+deleting .git/objects/pack/pack-eba1880f09d3fd550127fa417bd9cf1b27d5fedd.idx
+deleting .git/refs/pipelines/16719
+.git/
+.git/FETCH_HEAD
+.git/HEAD
+.git/config
+.git/index
+.git/shallow
+.git/lfs/
+.git/lfs/tmp/
+.git/logs/
+.git/logs/HEAD
+.git/logs/refs/
+.git/logs/refs/remotes/
+.git/logs/refs/remotes/origin/
+.git/logs/refs/remotes/origin/master
+.git/objects/
+.git/objects/info/
+.git/objects/pack/
+.git/objects/pack/pack-1552677df0623410ff50db17ff593bf2efca0ee3.idx
+.git/objects/pack/pack-1552677df0623410ff50db17ff593bf2efca0ee3.pack
+.git/objects/pack/pack-1552677df0623410ff50db17ff593bf2efca0ee3.rev
+.git/refs/
+.git/refs/heads/
+.git/refs/pipelines/
+.git/refs/pipelines/16747
+.git/refs/remotes/
+.git/refs/remotes/origin/
+.git/refs/remotes/origin/master
+.git/refs/tags/
+backend/
+backend/.dockerignore
+backend/.gitignore
+backend/Dockerfile
+backend/alembic.ini
+backend/entry.sh
+backend/poetry.lock
+backend/pyproject.toml
+backend/src/
+backend/src/__init__.py
+backend/src/config.py
+backend/src/enums.py
+backend/src/main.py
+backend/src/core/
+backend/src/core/__init__.py
+backend/src/core/application.py
+backend/src/core/aws.py
+backend/src/core/db/
+backend/src/core/db/__init__.py
+backend/src/core/db/engine.py
+backend/src/core/db/metadata.py
+backend/src/core/db/migrations/
+backend/src/core/db/migrations/README
+backend/src/core/db/migrations/__init__.py
+backend/src/core/db/migrations/env.py
+backend/src/core/db/migrations/script.py.mako
+backend/src/core/db/migrations/versions/
+backend/src/core/db/migrations/versions/29745f4f9deb_fix_fk.py
+backend/src/core/db/migrations/versions/36761415de63_initial.py
+backend/src/core/db/migrations/versions/5429a9e15d20_feedbacks.py
+backend/src/core/db/migrations/versions/78e5a55e2ba0_delete_unused_var.py
+backend/src/core/db/migrations/versions/7f1112ded3c9_add_application_global_settings.py
+backend/src/core/db/migrations/versions/8760cce3f58d_feedback_created_at.py
+backend/src/core/db/migrations/versions/e20167a2d69d_add_place_cascade.py
+backend/src/core/db/migrations/versions/f60d2908c443_fix_cascade_del.py
+backend/src/core/exc/
+backend/src/core/exc/__init__.py
+backend/src/core/exc/http/
+backend/src/core/exc/http/__init__.py
+backend/src/core/exc/http/client.py
+backend/src/core/exc/http/core.py
+backend/src/core/utils/
+backend/src/core/utils/__init__.py
+backend/src/core/utils/dates.py
+backend/src/core/utils/jwt.py
+backend/src/core/utils/undefined.py
+backend/src/models/
+backend/src/models/__init__.py
+backend/src/models/building.py
+backend/src/models/client.py
+backend/src/models/feedback.py
+backend/src/models/place.py
+backend/src/models/settings.py
+backend/src/models/visit.py
+backend/src/repo/
+backend/src/repo/building.py
+backend/src/repo/client.py
+backend/src/repo/place.py
+backend/src/routers/
+backend/src/routers/__init__.py
+backend/src/routers/admin.py
+backend/src/routers/auth.py
+backend/src/routers/building.py
+backend/src/routers/client.py
+backend/src/routers/files.py
+backend/src/routers/scheme.py
+backend/src/routers/system.py
+backend/src/routers/visitor.py
+backend/src/schemes/
+backend/src/schemes/__init__.py
+backend/src/schemes/admin.py
+backend/src/schemes/auth.py
+backend/src/schemes/building.py
+backend/src/schemes/client.py
+backend/src/schemes/files.py
+backend/src/schemes/metrics.py
+backend/src/schemes/place.py
+backend/src/schemes/scheme.py
+backend/src/schemes/settings.py
+backend/src/schemes/shared.py
+backend/src/schemes/visitor.py
+backend/src/service/
+backend/src/service/application_settings.py
+backend/src/service/files.py
+backend/src/service/metrics.py
+backend/src/service/building/
+backend/src/service/building/__init__.py
+backend/src/service/building/deps.py
+backend/src/service/building/service.py
+backend/src/service/client/
+backend/src/service/client/__init__.py
+backend/src/service/client/deps.py
+backend/src/service/client/service.py
+backend/src/service/place/
+backend/src/service/place/__init__.py
+backend/src/service/place/deps.py
+backend/src/service/place/service.py
+backend/src/service/smtp/
+backend/src/service/smtp/__init__.py
+backend/src/service/smtp/service.py
+backend/tests/
+backend/tests/conftest.py
+backend/tests/e2e/
+backend/tests/e2e/test_01_auth.py
+backend/tests/e2e/test_02_clients.py
+backend/tests/e2e/test_03_other.py
+backend/tests/e2e/test_04_building.py
+backend/tests/e2e/test_05_scheme.py
+backend/tests/e2e/test_06_visits.py
+backend/tests/e2e/test_07_floors.py
+backend/tests/images/
+backend/tests/images/telegram-cloud-photo-size-2-5341787324847092916-y.jpg
+backend/tests/unit/
+backend/tests/unit/test_u01_application_settings.py
+backend/tests/unit/test_u02_place_repo.py
+backend/tests/unit/test_u03_building_repo.py
+backend/tests/unit/test_u04_client_repo.py
+docs-materials/
+docs-materials/schema.png
+docs-materials/services.png
+frontend/
+frontend/.editorconfig
+frontend/.gitattributes
+frontend/.gitignore
+frontend/Dockerfile
+frontend/eslint.config.js
+frontend/index.html
+frontend/nginx.conf
+frontend/package-lock.json
+frontend/package.json
+frontend/postcss.config.js
+frontend/tailwind.config.js
+frontend/tsconfig.app.json
+frontend/tsconfig.json
+frontend/tsconfig.node.json
+frontend/vite.config.ts
+frontend/src/
+frontend/src/App.tsx
+frontend/src/config.ts
+frontend/src/index.css
+frontend/src/index.html
+frontend/src/main.tsx
+frontend/src/vite-env.d.ts
+frontend/src/app/
+frontend/src/app/App.tsx
+frontend/src/app/AppContent.tsx
+frontend/src/modules/
+frontend/src/modules/admin/
+frontend/src/modules/admin/api/
+frontend/src/modules/admin/api/organizationApi.ts
+frontend/src/modules/admin/components/
+frontend/src/modules/admin/components/CoworkingForm.tsx
+frontend/src/modules/admin/components/FloorModals.tsx
+frontend/src/modules/admin/store/
+frontend/src/modules/admin/store/organizationStore.ts
+frontend/src/modules/cowork/
+frontend/src/modules/cowork/api/
+frontend/src/modules/cowork/api/apiClient.ts
+frontend/src/modules/cowork/api/bookingApi.ts
+frontend/src/modules/cowork/api/buildingApi.ts
+frontend/src/modules/cowork/api/coworkingApi.ts
+frontend/src/modules/cowork/api/fileApi.ts
+frontend/src/modules/cowork/api/floorApi.ts
+frontend/src/modules/cowork/api/index.ts
+frontend/src/modules/cowork/api/mappers.ts
+frontend/src/modules/cowork/api/placeApi.ts
+frontend/src/modules/cowork/api/systemApi.ts
+frontend/src/modules/cowork/api/visitApi.ts
+frontend/src/modules/cowork/api/types/
+frontend/src/modules/cowork/api/types/index.ts
+frontend/src/modules/cowork/components/
+frontend/src/modules/cowork/components/AddressSearch.tsx
+frontend/src/modules/cowork/components/CoworkingList.tsx
+frontend/src/modules/cowork/components/CoworkingMap.tsx
+frontend/src/modules/cowork/components/FloorMap.tsx
+frontend/src/modules/cowork/components/FloorMapCanvas.tsx
+frontend/src/modules/cowork/components/FloorMapLeaflet.tsx
+frontend/src/modules/cowork/components/FloorMapViewer.tsx
+frontend/src/modules/cowork/components/FloorMapViewerCanvas.tsx
+frontend/src/modules/cowork/components/FloorMapViewerLeaflet.tsx
+frontend/src/modules/cowork/components/LeafletMap.tsx
+frontend/src/modules/cowork/components/SpaceList.tsx
+frontend/src/modules/cowork/components/TimePicker.tsx
+frontend/src/modules/cowork/components/YandexMap.tsx
+frontend/src/modules/cowork/types/
+frontend/src/modules/cowork/types/index.ts
+frontend/src/modules/user/
+frontend/src/modules/user/api/
+frontend/src/modules/user/api/authApi.ts
+frontend/src/modules/user/api/userApi.ts
+frontend/src/modules/user/store/
+frontend/src/modules/user/store/userStore.ts
+frontend/src/modules/user/types/
+frontend/src/modules/user/types/index.ts
+frontend/src/pages/
+frontend/src/pages/AdminCoworkingEditPage.tsx
+frontend/src/pages/AdminCoworkingsPage.tsx
+frontend/src/pages/AdminDashboardPage.tsx
+frontend/src/pages/AdminSpacesPage.tsx
+frontend/src/pages/BookingDetailsPage.tsx
+frontend/src/pages/BookingPage.tsx
+frontend/src/pages/CoworkingDetailsPage.tsx
+frontend/src/pages/CoworkingFloorPage.tsx
+frontend/src/pages/CoworkingMapPage.tsx
+frontend/src/pages/HomePage.tsx
+frontend/src/pages/LoginPage.tsx
+frontend/src/pages/NotFoundPage.tsx
+frontend/src/pages/OrganizationSettingsPage.tsx
+frontend/src/pages/ProfilePage.tsx
+frontend/src/pages/RegisterPage.tsx
+frontend/src/pages/SpaceDetailsPage.tsx
+frontend/src/shared/
+frontend/src/shared/components/
+frontend/src/shared/components/AdminSidebar.tsx
+frontend/src/shared/components/BottomSheet.tsx
+frontend/src/shared/components/FileUpload.tsx
+frontend/src/shared/components/Footer.tsx
+frontend/src/shared/components/FormField.tsx
+frontend/src/shared/components/Header.tsx
+frontend/src/shared/components/LoadingScreen.tsx
+frontend/src/shared/components/MobileBottomBar.tsx
+frontend/src/shared/components/Modal.tsx
+frontend/src/shared/components/ProtectedRoute.tsx
+frontend/src/shared/components/QRCodeScanner.tsx
+frontend/src/shared/components/TimePicker.tsx
+frontend/src/shared/layouts/
+frontend/src/shared/layouts/AdminLayout.tsx
+frontend/src/shared/layouts/MainLayout.tsx
+frontend/src/styles/
+frontend/src/styles/components.css
+sent 1,065,011 bytes  received 15,005 bytes  2,160,032.00 bytes/sec
+total size is 2,215,864  speedup is 2.05
+$ ssh $SERVER_USER@$SERVER_HOST "cd $SERVER_DIR && docker compose build && docker compose up -d"
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "default" instance using docker driver
+#1 [backend internal] load build definition from Dockerfile
+#1 transferring dockerfile: 324B done
+#1 DONE 0.0s
+#2 [frontend internal] load build definition from Dockerfile
+#2 transferring dockerfile: 301B done
+#2 DONE 0.0s
+#3 [frontend internal] load metadata for docker.io/library/nginx:alpine
+#3 DONE 0.0s
+#4 [frontend internal] load metadata for docker.io/library/node:alpine
+#4 ...
+#5 [backend internal] load metadata for docker.io/library/python:3.12-alpine
+#5 DONE 0.9s
+#4 [frontend internal] load metadata for docker.io/library/node:alpine
+#4 DONE 0.9s
+#6 [frontend internal] load .dockerignore
+#6 transferring context: 2B done
+#6 DONE 0.0s
+#7 [frontend builder 1/6] FROM docker.io/library/node:alpine@sha256:dc4d20572e425f9d4c68a6f9c382fbcfec3fa2f8ef0b12cb1d96feabdb479a48
+#7 DONE 0.0s
+#8 [frontend stage-1 1/3] FROM docker.io/library/nginx:alpine
+#8 DONE 0.0s
+#9 [backend internal] load .dockerignore
+#9 transferring context: 92B done
+#9 DONE 0.0s
+#10 [backend 1/7] FROM docker.io/library/python:3.12-alpine@sha256:28b8a72c4e0704dd2048b79830e692e94ac2d43d30c914d54def6abf74448a4e
+#10 DONE 0.0s
+#11 [frontend internal] load build context
+#11 transferring context: 691.42kB 0.0s done
+#11 DONE 0.0s
+#12 [frontend builder 5/6] COPY . .
+#12 CACHED
+#13 [frontend builder 2/6] WORKDIR /app
+#13 CACHED
+#14 [frontend builder 6/6] RUN npm run build
+#14 CACHED
+#15 [frontend builder 4/6] RUN npm install
+#15 CACHED
+#16 [frontend builder 3/6] COPY ./package.json .
+#16 CACHED
+#17 [frontend stage-1 2/3] COPY --from=builder /app/dist /usr/share/nginx/html
+#17 CACHED
+#18 [frontend stage-1 3/3] COPY nginx.conf /etc/nginx/conf.d/default.conf
+#18 CACHED
+#19 [frontend] exporting to image
+#19 exporting layers done
+#19 writing image sha256:741f5e91241e326b56ff263620ef329c0434eb9df2ae25f15863154a8b63aef3 done
+#19 naming to docker.io/library/project-frontend done
+#19 DONE 0.0s
+#20 [backend internal] load build context
+#20 transferring context: 340.59kB 0.0s done
+#20 DONE 0.0s
+#21 [backend 2/7] WORKDIR /app
+#21 CACHED
+#22 [backend 3/7] COPY . .
+#22 DONE 0.1s
+#23 [frontend] resolving provenance for metadata file
+#23 DONE 0.0s
+#24 [backend 4/7] RUN apk update; apk add curl gcc
+#24 0.196 fetch https://dl-cdn.alpinelinux.org/alpine/v3.21/main/x86_64/APKINDEX.tar.gz
+#24 1.276 fetch https://dl-cdn.alpinelinux.org/alpine/v3.21/community/x86_64/APKINDEX.tar.gz
+#24 8.510 v3.21.3-95-g22c7b41f717 [https://dl-cdn.alpinelinux.org/alpine/v3.21/main]
+#24 8.510 v3.21.3-105-g18e12c3a6c4 [https://dl-cdn.alpinelinux.org/alpine/v3.21/community]
+#24 8.510 OK: 25396 distinct packages available
+#24 8.961 (1/20) Installing brotli-libs (1.1.0-r2)
+#24 10.32 (2/20) Installing c-ares (1.34.3-r0)
+#24 10.82 (3/20) Installing libunistring (1.2-r0)
+#24 12.37 (4/20) Installing libidn2 (2.3.7-r0)
+#24 12.58 (5/20) Installing nghttp2-libs (1.64.0-r0)
+#24 12.72 (6/20) Installing libpsl (0.21.5-r3)
+#24 12.83 (7/20) Installing zstd-libs (1.5.6-r2)
+#24 13.36 (8/20) Installing libcurl (8.12.1-r0)
+#24 13.73 (9/20) Installing curl (8.12.1-r0)
+#24 13.94 (10/20) Installing libgcc (14.2.0-r4)
+#24 14.06 (11/20) Installing jansson (2.14-r4)
+#24 14.14 (12/20) Installing libstdc++ (14.2.0-r4)
+#24 15.45 (13/20) Installing binutils (2.43.1-r1)
+#24 18.84 (14/20) Installing libgomp (14.2.0-r4)
+#24 18.99 (15/20) Installing libatomic (14.2.0-r4)
+#24 19.05 (16/20) Installing gmp (6.3.0-r2)
+#24 19.25 (17/20) Installing isl26 (0.26-r1)
+#24 19.90 (18/20) Installing mpfr4 (4.2.1-r0)
+#24 20.14 (19/20) Installing mpc1 (1.3.1-r1)
+#24 20.25 (20/20) Installing gcc (14.2.0-r4)
+#24 123.3 Executing busybox-1.37.0-r12.trigger
+#24 123.3 OK: 171 MiB in 57 packages
+#24 DONE 123.9s
+#25 [backend 5/7] RUN pip install --no-cache-dir poetry
+#25 3.359 Collecting poetry
+#25 3.500   Downloading poetry-2.1.1-py3-none-any.whl.metadata (7.1 kB)
+#25 3.552 Collecting build<2.0.0,>=1.2.1 (from poetry)
+#25 3.593   Downloading build-1.2.2.post1-py3-none-any.whl.metadata (6.5 kB)
+#25 3.640 Collecting cachecontrol<0.15.0,>=0.14.0 (from cachecontrol[filecache]<0.15.0,>=0.14.0->poetry)
+#25 3.681   Downloading cachecontrol-0.14.2-py3-none-any.whl.metadata (3.1 kB)
+#25 3.730 Collecting cleo<3.0.0,>=2.1.0 (from poetry)
+#25 3.771   Downloading cleo-2.1.0-py3-none-any.whl.metadata (12 kB)
+#25 4.002 Collecting dulwich<0.23.0,>=0.22.6 (from poetry)
+#25 4.048   Downloading dulwich-0.22.8-py3-none-any.whl.metadata (4.9 kB)
+#25 4.086 Collecting fastjsonschema<3.0.0,>=2.18.0 (from poetry)
+#25 4.128   Downloading fastjsonschema-2.21.1-py3-none-any.whl.metadata (2.2 kB)
+#25 4.167 Collecting findpython<0.7.0,>=0.6.2 (from poetry)
+#25 4.208   Downloading findpython-0.6.2-py3-none-any.whl.metadata (5.3 kB)
+#25 4.247 Collecting installer<0.8.0,>=0.7.0 (from poetry)
+#25 4.288   Downloading installer-0.7.0-py3-none-any.whl.metadata (936 bytes)
+#25 4.371 Collecting keyring<26.0.0,>=25.1.0 (from poetry)
+#25 4.413   Downloading keyring-25.6.0-py3-none-any.whl.metadata (20 kB)
+#25 4.493 Collecting packaging>=24.0 (from poetry)
+#25 4.535   Downloading packaging-24.2-py3-none-any.whl.metadata (3.2 kB)
+#25 4.574 Collecting pbs-installer<2026.0.0,>=2025.1.6 (from pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry)
+#25 4.617   Downloading pbs_installer-2025.2.12-py3-none-any.whl.metadata (991 bytes)
+#25 4.660 Collecting pkginfo<2.0,>=1.12 (from poetry)
+#25 4.703   Downloading pkginfo-1.12.1.2-py3-none-any.whl.metadata (13 kB)
+#25 4.761 Collecting platformdirs<5,>=3.0.0 (from poetry)
+#25 4.803   Downloading platformdirs-4.3.6-py3-none-any.whl.metadata (11 kB)
+#25 4.871 Collecting poetry-core==2.1.1 (from poetry)
+#25 4.912   Downloading poetry_core-2.1.1-py3-none-any.whl.metadata (3.5 kB)
+#25 4.942 Collecting pyproject-hooks<2.0.0,>=1.0.0 (from poetry)
+#25 4.982   Downloading pyproject_hooks-1.2.0-py3-none-any.whl.metadata (1.3 kB)
+#25 5.047 Collecting requests<3.0,>=2.26 (from poetry)
+#25 5.090   Downloading requests-2.32.3-py3-none-any.whl.metadata (4.6 kB)
+#25 5.126 Collecting requests-toolbelt<2.0.0,>=1.0.0 (from poetry)
+#25 5.167   Downloading requests_toolbelt-1.0.0-py2.py3-none-any.whl.metadata (14 kB)
+#25 5.220 Collecting shellingham<2.0,>=1.5 (from poetry)
+#25 5.261   Downloading shellingham-1.5.4-py2.py3-none-any.whl.metadata (3.5 kB)
+#25 5.325 Collecting tomlkit<1.0.0,>=0.11.4 (from poetry)
+#25 5.366   Downloading tomlkit-0.13.2-py3-none-any.whl.metadata (2.7 kB)
+#25 5.424 Collecting trove-classifiers>=2022.5.19 (from poetry)
+#25 5.465   Downloading trove_classifiers-2025.2.18.16-py3-none-any.whl.metadata (2.3 kB)
+#25 5.620 Collecting virtualenv<21.0.0,>=20.26.6 (from poetry)
+#25 5.661   Downloading virtualenv-20.29.2-py3-none-any.whl.metadata (4.5 kB)
+#25 5.799 Collecting msgpack<2.0.0,>=0.5.2 (from cachecontrol<0.15.0,>=0.14.0->cachecontrol[filecache]<0.15.0,>=0.14.0->poetry)
+#25 5.840   Downloading msgpack-1.1.0-cp312-cp312-musllinux_1_2_x86_64.whl.metadata (8.4 kB)
+#25 5.898 Collecting filelock>=3.8.0 (from cachecontrol[filecache]<0.15.0,>=0.14.0->poetry)
+#25 5.939   Downloading filelock-3.17.0-py3-none-any.whl.metadata (2.9 kB)
+#25 5.973 Collecting crashtest<0.5.0,>=0.4.1 (from cleo<3.0.0,>=2.1.0->poetry)
+#25 6.015   Downloading crashtest-0.4.1-py3-none-any.whl.metadata (1.1 kB)
+#25 6.946 Collecting rapidfuzz<4.0.0,>=3.0.0 (from cleo<3.0.0,>=2.1.0->poetry)
+#25 6.990   Downloading rapidfuzz-3.12.2-cp312-cp312-musllinux_1_2_x86_64.whl.metadata (12 kB)
+#25 7.078 Collecting urllib3>=1.25 (from dulwich<0.23.0,>=0.22.6->poetry)
+#25 7.119   Downloading urllib3-2.3.0-py3-none-any.whl.metadata (6.5 kB)
+#25 7.165 Collecting SecretStorage>=3.2 (from keyring<26.0.0,>=25.1.0->poetry)
+#25 7.206   Downloading SecretStorage-3.3.3-py3-none-any.whl.metadata (4.0 kB)
+#25 7.239 Collecting jeepney>=0.4.2 (from keyring<26.0.0,>=25.1.0->poetry)
+#25 7.281   Downloading jeepney-0.9.0-py3-none-any.whl.metadata (1.2 kB)
+#25 7.315 Collecting jaraco.classes (from keyring<26.0.0,>=25.1.0->poetry)
+#25 7.357   Downloading jaraco.classes-3.4.0-py3-none-any.whl.metadata (2.6 kB)
+#25 7.401 Collecting jaraco.functools (from keyring<26.0.0,>=25.1.0->poetry)
+#25 7.442   Downloading jaraco.functools-4.1.0-py3-none-any.whl.metadata (2.9 kB)
+#25 7.483 Collecting jaraco.context (from keyring<26.0.0,>=25.1.0->poetry)
+#25 7.525   Downloading jaraco.context-6.0.1-py3-none-any.whl.metadata (4.1 kB)
+#25 7.585 Collecting httpx<1,>=0.27.0 (from pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry)
+#25 7.626   Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+#25 7.755 Collecting zstandard>=0.21.0 (from pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry)
+#25 7.796   Downloading zstandard-0.23.0-cp312-cp312-musllinux_1_2_x86_64.whl.metadata (3.0 kB)
+#25 7.937 Collecting charset-normalizer<4,>=2 (from requests<3.0,>=2.26->poetry)
+#25 7.979   Downloading charset_normalizer-3.4.1-cp312-cp312-musllinux_1_2_x86_64.whl.metadata (35 kB)
+#25 8.038 Collecting idna<4,>=2.5 (from requests<3.0,>=2.26->poetry)
+#25 8.079   Downloading idna-3.10-py3-none-any.whl.metadata (10 kB)
+#25 8.142 Collecting certifi>=2017.4.17 (from requests<3.0,>=2.26->poetry)
+#25 8.183   Downloading certifi-2025.1.31-py3-none-any.whl.metadata (2.5 kB)
+#25 8.239 Collecting distlib<1,>=0.3.7 (from virtualenv<21.0.0,>=20.26.6->poetry)
+#25 8.280   Downloading distlib-0.3.9-py2.py3-none-any.whl.metadata (5.2 kB)
+#25 8.357 Collecting anyio (from httpx<1,>=0.27.0->pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry)
+#25 8.399   Downloading anyio-4.8.0-py3-none-any.whl.metadata (4.6 kB)
+#25 8.456 Collecting httpcore==1.* (from httpx<1,>=0.27.0->pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry)
+#25 8.497   Downloading httpcore-1.0.7-py3-none-any.whl.metadata (21 kB)
+#25 8.537 Collecting h11<0.15,>=0.13 (from httpcore==1.*->httpx<1,>=0.27.0->pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry)
+#25 8.578   Downloading h11-0.14.0-py3-none-any.whl.metadata (8.2 kB)
+#25 8.881 Collecting cryptography>=2.0 (from SecretStorage>=3.2->keyring<26.0.0,>=25.1.0->poetry)
+#25 8.923   Downloading cryptography-44.0.2-cp39-abi3-musllinux_1_2_x86_64.whl.metadata (5.7 kB)
+#25 8.981 Collecting more-itertools (from jaraco.classes->keyring<26.0.0,>=25.1.0->poetry)
+#25 9.024   Downloading more_itertools-10.6.0-py3-none-any.whl.metadata (37 kB)
+#25 9.235 Collecting cffi>=1.12 (from cryptography>=2.0->SecretStorage>=3.2->keyring<26.0.0,>=25.1.0->poetry)
+#25 9.279   Downloading cffi-1.17.1-cp312-cp312-musllinux_1_1_x86_64.whl.metadata (1.5 kB)
+#25 9.317 Collecting sniffio>=1.1 (from anyio->httpx<1,>=0.27.0->pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry)
+#25 9.359   Downloading sniffio-1.3.1-py3-none-any.whl.metadata (3.9 kB)
+#25 9.411 Collecting typing_extensions>=4.5 (from anyio->httpx<1,>=0.27.0->pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry)
+#25 9.453   Downloading typing_extensions-4.12.2-py3-none-any.whl.metadata (3.0 kB)
+#25 9.495 Collecting pycparser (from cffi>=1.12->cryptography>=2.0->SecretStorage>=3.2->keyring<26.0.0,>=25.1.0->poetry)
+#25 9.536   Downloading pycparser-2.22-py3-none-any.whl.metadata (943 bytes)
+#25 9.589 Downloading poetry-2.1.1-py3-none-any.whl (277 kB)
+#25 9.712 Downloading poetry_core-2.1.1-py3-none-any.whl (331 kB)
+#25 9.771 Downloading build-1.2.2.post1-py3-none-any.whl (22 kB)
+#25 9.815 Downloading cachecontrol-0.14.2-py3-none-any.whl (21 kB)
+#25 9.857 Downloading cleo-2.1.0-py3-none-any.whl (78 kB)
+#25 9.900 Downloading dulwich-0.22.8-py3-none-any.whl (273 kB)
+#25 9.947 Downloading fastjsonschema-2.21.1-py3-none-any.whl (23 kB)
+#25 9.990 Downloading findpython-0.6.2-py3-none-any.whl (20 kB)
+#25 10.03 Downloading installer-0.7.0-py3-none-any.whl (453 kB)
+#25 10.09 Downloading keyring-25.6.0-py3-none-any.whl (39 kB)
+#25 10.13 Downloading packaging-24.2-py3-none-any.whl (65 kB)
+#25 10.17 Downloading pbs_installer-2025.2.12-py3-none-any.whl (53 kB)
+#25 10.21 Downloading pkginfo-1.12.1.2-py3-none-any.whl (32 kB)
+#25 10.25 Downloading platformdirs-4.3.6-py3-none-any.whl (18 kB)
+#25 10.30 Downloading pyproject_hooks-1.2.0-py3-none-any.whl (10 kB)
+#25 10.34 Downloading requests-2.32.3-py3-none-any.whl (64 kB)
+#25 10.38 Downloading requests_toolbelt-1.0.0-py2.py3-none-any.whl (54 kB)
+#25 10.42 Downloading shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+#25 10.46 Downloading tomlkit-0.13.2-py3-none-any.whl (37 kB)
+#25 10.50 Downloading trove_classifiers-2025.2.18.16-py3-none-any.whl (13 kB)
+#25 10.55 Downloading virtualenv-20.29.2-py3-none-any.whl (4.3 MB)
+#25 10.64    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.3/4.3 MB 46.9 MB/s eta 0:00:00
+#25 10.68 Downloading certifi-2025.1.31-py3-none-any.whl (166 kB)
+#25 10.72 Downloading charset_normalizer-3.4.1-cp312-cp312-musllinux_1_2_x86_64.whl (146 kB)
+#25 10.76 Downloading crashtest-0.4.1-py3-none-any.whl (7.6 kB)
+#25 10.81 Downloading distlib-0.3.9-py2.py3-none-any.whl (468 kB)
+#25 10.85 Downloading filelock-3.17.0-py3-none-any.whl (16 kB)
+#25 10.89 Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+#25 10.93 Downloading httpcore-1.0.7-py3-none-any.whl (78 kB)
+#25 10.98 Downloading idna-3.10-py3-none-any.whl (70 kB)
+#25 11.02 Downloading jeepney-0.9.0-py3-none-any.whl (49 kB)
+#25 11.06 Downloading msgpack-1.1.0-cp312-cp312-musllinux_1_2_x86_64.whl (394 kB)
+#25 11.11 Downloading rapidfuzz-3.12.2-cp312-cp312-musllinux_1_2_x86_64.whl (4.6 MB)
+#25 11.16    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.6/4.6 MB 96.0 MB/s eta 0:00:00
+#25 11.20 Downloading SecretStorage-3.3.3-py3-none-any.whl (15 kB)
+#25 11.24 Downloading urllib3-2.3.0-py3-none-any.whl (128 kB)
+#25 11.29 Downloading zstandard-0.23.0-cp312-cp312-musllinux_1_2_x86_64.whl (5.2 MB)
+#25 11.35    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 87.6 MB/s eta 0:00:00
+#25 11.39 Downloading jaraco.classes-3.4.0-py3-none-any.whl (6.8 kB)
+#25 11.43 Downloading jaraco.context-6.0.1-py3-none-any.whl (6.8 kB)
+#25 11.47 Downloading jaraco.functools-4.1.0-py3-none-any.whl (10 kB)
+#25 11.51 Downloading cryptography-44.0.2-cp39-abi3-musllinux_1_2_x86_64.whl (4.3 MB)
+#25 11.56    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.3/4.3 MB 94.4 MB/s eta 0:00:00
+#25 11.60 Downloading anyio-4.8.0-py3-none-any.whl (96 kB)
+#25 11.64 Downloading more_itertools-10.6.0-py3-none-any.whl (63 kB)
+#25 11.68 Downloading cffi-1.17.1-cp312-cp312-musllinux_1_1_x86_64.whl (488 kB)
+#25 11.73 Downloading h11-0.14.0-py3-none-any.whl (58 kB)
+#25 11.77 Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)
+#25 11.81 Downloading typing_extensions-4.12.2-py3-none-any.whl (37 kB)
+#25 11.85 Downloading pycparser-2.22-py3-none-any.whl (117 kB)
+#25 12.13 Installing collected packages: trove-classifiers, fastjsonschema, distlib, zstandard, urllib3, typing_extensions, tomlkit, sniffio, shellingham, rapidfuzz, pyproject-hooks, pycparser, poetry-core, platformdirs, pkginfo, pbs-installer, packaging, msgpack, more-itertools, jeepney, jaraco.context, installer, idna, h11, filelock, crashtest, charset-normalizer, certifi, virtualenv, requests, jaraco.functools, jaraco.classes, httpcore, findpython, dulwich, cleo, cffi, build, anyio, requests-toolbelt, httpx, cryptography, cachecontrol, SecretStorage, keyring, poetry
+#25 16.57 Successfully installed SecretStorage-3.3.3 anyio-4.8.0 build-1.2.2.post1 cachecontrol-0.14.2 certifi-2025.1.31 cffi-1.17.1 charset-normalizer-3.4.1 cleo-2.1.0 crashtest-0.4.1 cryptography-44.0.2 distlib-0.3.9 dulwich-0.22.8 fastjsonschema-2.21.1 filelock-3.17.0 findpython-0.6.2 h11-0.14.0 httpcore-1.0.7 httpx-0.28.1 idna-3.10 installer-0.7.0 jaraco.classes-3.4.0 jaraco.context-6.0.1 jaraco.functools-4.1.0 jeepney-0.9.0 keyring-25.6.0 more-itertools-10.6.0 msgpack-1.1.0 packaging-24.2 pbs-installer-2025.2.12 pkginfo-1.12.1.2 platformdirs-4.3.6 poetry-2.1.1 poetry-core-2.1.1 pycparser-2.22 pyproject-hooks-1.2.0 rapidfuzz-3.12.2 requests-2.32.3 requests-toolbelt-1.0.0 shellingham-1.5.4 sniffio-1.3.1 tomlkit-0.13.2 trove-classifiers-2025.2.18.16 typing_extensions-4.12.2 urllib3-2.3.0 virtualenv-20.29.2 zstandard-0.23.0
+#25 16.57 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#25 16.96
+#25 16.96 [notice] A new release of pip is available: 24.3.1 -> 25.0.1
+#25 16.96 [notice] To update, run: pip install --upgrade pip
+#25 DONE 19.4s
+#26 [backend 6/7] RUN poetry install --only main --no-root --no-directory
+#26 1.212 Creating virtualenv backend-9TtSrW0h-py3.12 in /root/.cache/pypoetry/virtualenvs
+#26 1.756 Installing dependencies from lock file
+#26 2.054
+#26 2.054 Package operations: 51 installs, 0 updates, 0 removals
+#26 2.054
+#26 2.055   - Installing six (1.17.0)
+#26 2.360   - Installing jmespath (1.0.1)
+#26 2.361   - Installing python-dateutil (2.9.0.post0)
+#26 2.362   - Installing urllib3 (2.3.0)
+#26 2.669   - Installing botocore (1.36.1)
+#26 2.669   - Installing frozenlist (1.5.0)
+#26 2.670   - Installing idna (3.10)
+#26 2.671   - Installing multidict (6.1.0)
+#26 2.672   - Installing propcache (0.2.1)
+#26 3.835   - Installing aiohappyeyeballs (2.4.6)
+#26 3.836   - Installing aiosignal (1.3.2)
+#26 3.837   - Installing attrs (25.1.0)
+#26 3.838   - Installing s3transfer (0.11.2)
+#26 3.839   - Installing sniffio (1.3.1)
+#26 3.840   - Installing typing-extensions (4.12.2)
+#26 3.842   - Installing yarl (1.18.3)
+#26 4.028   - Installing aiohttp (3.11.12)
+#26 4.029   - Installing aioitertools (0.12.0)
+#26 4.030   - Installing annotated-types (0.7.0)
+#26 4.031   - Installing anyio (4.8.0)
+#26 4.032   - Installing boto3 (1.36.1)
+#26 4.034   - Installing greenlet (3.1.1)
+#26 4.035   - Installing markupsafe (3.0.2)
+#26 4.035   - Installing dnspython (2.7.0)
+#26 4.130   - Installing pydantic-core (2.27.2)
+#26 4.142   - Installing wrapt (1.17.2)
+#26 4.613   - Installing aiobotocore (2.18.0)
+#26 4.614   - Installing aiofiles (24.1.0)
+#26 4.615   - Installing click (8.1.8)
+#26 4.616   - Installing email-validator (2.2.0)
+#26 4.616   - Installing h11 (0.14.0)
+#26 4.617   - Installing mako (1.3.9)
+#26 4.619   - Installing packaging (24.2)
+#26 4.620   - Installing prometheus-client (0.21.1)
+#26 4.677   - Installing pydantic (2.10.6)
+#26 4.734   - Installing sqlalchemy (2.0.38)
+#26 4.739   - Installing starlette (0.45.3)
+#26 4.758   - Installing tzdata (2025.1)
+#26 6.149   - Installing aioboto3 (13.4.0)
+#26 6.150   - Installing alembic (1.14.1)
+#26 6.150   - Installing asyncpg (0.30.0)
+#26 6.153   - Installing faker (36.1.1)
+#26 6.153   - Installing fastapi (0.115.8)
+#26 6.154   - Installing gunicorn (23.0.0)
+#26 6.156   - Installing pillow (11.1.0)
+#26 6.157   - Installing prometheus-fastapi-instrumentator (7.0.2)
+#26 6.250   - Installing pyjwt (2.10.1)
+#26 6.309   - Installing python-dotenv (1.0.1)
+#26 6.391   - Installing python-multipart (0.0.20)
+#26 6.425   - Installing pytz (2025.1)
+#26 6.433   - Installing uvicorn (0.34.0)
+#26 DONE 13.0s
+#27 [backend 7/7] RUN chmod +x entry.sh
+#27 DONE 0.3s
+#28 [backend] exporting to image
+#28 exporting layers
+#28 exporting layers 2.8s done
+#28 writing image sha256:0ef5911a92e8de33f713be9b2a36ae20f35b5df0876e050b4f5e22ed0b2259ca done
+#28 naming to docker.io/library/project-backend done
+#28 DONE 2.8s
+#29 [backend] resolving provenance for metadata file
+#29 DONE 0.0s
+ backend  Built
+ frontend  Built
+ Container frontend  Running
+ Container minio  Running
+ Container db  Running
+ Container nginx  Stopping
+ Container nginx  Stopped
+ Container backend  Recreate
+ Container backend  Recreated
+ Container nginx  Created
+ Container minio  Waiting
+ Container db  Waiting
+ Container db  Healthy
+ Container minio  Healthy
+ Container backend  Starting
+ Container backend  Started
+ Container backend  Waiting
+ Container backend  Healthy
+ Container nginx  Starting
+ Container nginx  Started
+Cleaning up project directory and file based variables 00:01
+Job succeeded

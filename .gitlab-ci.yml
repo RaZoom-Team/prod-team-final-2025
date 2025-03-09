@@ -1,0 +1,73 @@
+stages:
+  - tests
+  - deploy
+
+variables:
+  SERVER_USER: $SERVER_USER
+  SERVER_HOST: $SERVER_HOST
+  SERVER_DIR: $SERVER_DIR
+
+tests:
+  stage: tests
+  image: python:3.12
+  services:
+    - name: docker:24.0.5-dind
+      alias: docker
+      command: [ "--tls=false" ]
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+    TC_HOST: docker
+    TC_PORT: 2375
+  before_script:
+    - apt-get update && apt-get install -y docker.io
+    - cd backend
+    - pip install poetry
+    - poetry install
+    - timeout 15 sh -c "until docker info; do echo waiting for docker; sleep 1; done"
+  script:
+    - echo "Network configuration:"
+    - ip addr
+    - echo "Docker containers:"
+    - docker ps -a
+    - echo "Testing environment:"
+    - env | grep DOCKER
+    - export DOCKER_HOST=tcp://docker:2375
+    - poetry run pytest -xvs -v
+  only:
+    - master
+    - merge_requests
+
+deploy:
+  stage: deploy
+  before_script:
+    - apt-get update && apt-get install -y openssh-client && apt-get install -y rsync
+    - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - eval $(ssh-agent -s)
+    - ssh-add ~/.ssh/id_rsa
+    - ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
+  script:
+    - ssh $SERVER_USER@$SERVER_HOST whoami
+    - rsync -avz --delete --exclude='.env' ./ $SERVER_USER@$SERVER_HOST:$SERVER_DIR
+    - ssh $SERVER_USER@$SERVER_HOST "cd $SERVER_DIR && docker compose build && docker compose up -d"
+  only:
+    - master
+
+#reserve_deploy:
+#  stage: deploy
+#  before_script:
+#    - apt-get update && apt-get install -y openssh-client && apt-get install -y rsync
+#    - mkdir -p ~/.ssh
+#    - echo "$SSH2_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+#    - chmod 600 ~/.ssh/id_rsa
+#    - eval $(ssh-agent -s)
+#    - ssh-add ~/.ssh/id_rsa
+#    - ssh-keyscan -H $SERVER2_HOST >> ~/.ssh/known_hosts
+#  script:
+#    - ssh $SERVER2_USER@$SERVER2_HOST whoami
+#    - rsync -avz --delete --exclude='.env' ./ $SERVER2_USER@$SERVER2_HOST:$SERVER2_DIR
+#    - ssh $SERVER2_USER@$SERVER2_HOST "cd $SERVER2_DIR && docker compose build && docker compose up -d"
+#  only:
+#    - master
